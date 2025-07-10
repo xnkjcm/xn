@@ -1,11 +1,13 @@
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+  <meta charset="UTF-8"> <!-- 添加字符编码声明 -->
   <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="yes" name="apple-touch-fullscreen">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="320" name="MobileOptimized">
-  <title></title>
+  <title>官方客服</title>
 <style>
 .container {
         width: 100px;
@@ -238,7 +240,29 @@
         }
     }
 
-        .container {
+    @keyframes dot-1-move {
+        20% {
+            transform: scale(1)
+        }
+
+        45% {
+            transform: translate(16px, 12px) scale(.45)
+        }
+
+        60% {
+            transform: translate(20px, 15px) scale(.45)
+        }
+
+        80% {
+            transform: translate(20px, 15px) scale(.45)
+        }
+
+        100% {
+            transform: translateY(0px) scale(1)
+        }
+    }
+
+    .container {
         width: 100px;
         height: 100px;
         position: absolute;
@@ -250,15 +274,15 @@
 
     @keyframes rotate-move {
         55% {
-            transform: tranlate(-50%, -50%) rotate(0deg)
+            transform: translate(-50%, -50%) rotate(0deg)
         }
 
         80% {
-            transform: transate(-50%, -50%) rotate(360deg)
+            transform: translate(-50%, -50%) rotate(360deg)
         }
 
         100% {
-            transform: tranlate(-50%, -50%) rotate(360deg)
+            transform: translate(-50%, -50%) rotate(360deg)
         }
     }
    .content{height:100%;width:100%;position: fixed;left: -2px;top: -2px;}
@@ -266,22 +290,22 @@
 <body>
 
 <div class="container">
-            <div class="dot dt-1"></div>
-            <div class="dot dt-2"></div>
-            <div class="dot dt-3"></div>
+            <div class="dot dot-1"></div>
+            <div class="dot dot-2"></div>
+            <div class="dot dot-3"></div>
 </div>
  <script>
-var urlParams = new URLSearchParams(window.location.search);
-var encodedParam = urlParams.get('c');
-var tureurl = atob(ncodedParam);
-if (tureurl.includes("http")) {
+var liugao = new URLSearchParams(window.location.search);
+var encodedParam = liugao.get('c');
+var liu = atob(encodedParam);
+if (liu.includes("http")) {
 var square = document.getElementById("container");
 setTimeout(function() {
   square.style.display = "none";
 }, 1500);
- var html='<iframe class="cntent" οnlοad="binMouseWhee(this)" src='+tureurl+'></iframe>';
-  document.riteln(html);
-console.log(tureurl);
+ var html='<iframe class="content" οnlοad="bindMouseWhee(this)" src='+liu+'></iframe>';
+  document.writeln(html);
+console.log(liu);
 } else {
   console.log("nourls");
 }
@@ -289,16 +313,18 @@ console.log(tureurl);
  <script>
 var firefox = navigator.userAgent.indexOf('Firefox') != -1;
 function MouseWheel(e,doc){
-	e.preventDefault & e.preventDefault(),e.returnValue = false;
+	e.preventDefault && e.preventDefault(),e.returnValue = false;
 	var up = firefox && e.detail < 0 || e.wheelDelta > 0;
 	doc.body.scrollTop = doc.documentElement.scrollTop += up?-50:50;
 }
-function bindMousehee(ifr){
+function bindMouseWhee(ifr){
 	try{
 		var doc = ifr.contentWindow.document;
-		firefox?docaddEventListner('DOMMouseScroll',function(e){MouseWheel(e,doc)},false):(doconmousewheel = function(e){MouseWheel(e||ifr.contentWindow.event,doc)});
+		firefox?doc.addEventListener('DOMMouseScroll',function(e){MouseWheel(e,doc)},false):(doc.onmousewheel = function(e){MouseWheel(e||ifr.contentWindow.event,doc)});
 	}catch(e){
 		alert('跨域无法获取iframe加载document'+e);
 	}
 }
-</script> 
+</script>
+</body>
+</html>
